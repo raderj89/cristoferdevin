@@ -1,0 +1,23 @@
+.shared-footer
+  .social-links
+    %ul
+      %li 
+        = link_to '#' do
+          = image_tag('twitter.png')
+      %li 
+        = link_to '#' do
+          = image_tag('facebook.png')
+      %li 
+        = link_to '#' do
+          = image_tag('instagram.png')
+
+  %footer
+    %ul
+      %li 
+        = link_to 'Privacy Policy', privacy_path
+      %li 
+        = link_to 'Terms & Conditions', tos_path
+      %li 
+        = link_to 'FAQ', faq_path
+      %li 
+        = link_to 'Contact Us', contact_path

@@ -1,0 +1,9 @@
+.text-page
+  %h1
+    Frequently Asked Questions
+
+  - @faqs.each do |faq|
+    %h2
+      = faq.question
+    %p
+      = faq.answer

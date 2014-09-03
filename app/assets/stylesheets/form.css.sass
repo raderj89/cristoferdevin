@@ -1,0 +1,35 @@
+// Form Elements
+.button, input[type=submit]
+  color: $gold
+  background: none
+  font-family: $sans-bold
+  text-transform: uppercase
+  display: inline-block
+  border: 2px solid $gold
+  padding: 1rem
+  border-radius: 5px
+  min-width: 100px
+  text-align: center
+  &:hover
+    background: $gold
+    color: white
+
+input[type=text], input[type=number], input[type=email], input[type=tel]
+  color: $dark-gray
+  border: 1px solid $blue
+  padding: .4rem
+  border-radius: 3px
+  &:focus
+    outline: none
+
+input[type=number]
+  -moz-appearance:textfield
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button 
+  -webkit-appearance: none 
+  margin: 0
+
+::-webkit-input-placeholder
+  font-family: $sans-bold
+  text-transform: uppercase

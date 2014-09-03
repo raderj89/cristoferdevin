@@ -1,0 +1,19 @@
+%h2 Products Index
+= link_to "Create New Featured Product", new_admin_featured_product_path
+%ul
+- @featured_products.each do |product|
+  %li
+    .title
+      Title: 
+      = link_to product.product.title, admin_featured_product_path(product)
+      .description
+        Description:
+        = product.description
+      .price
+        Price:
+        =number_to_currency(product.product.price)
+      .category
+        Categories: 
+        - product.category.title
+    = link_to "Edit", edit_admin_featured_product_path(product)
+    = link_to 'X', admin_featured_product_path(product), method: :delete, data: { confirm: 'Are you sure?' }

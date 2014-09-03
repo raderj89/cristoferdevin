@@ -1,0 +1,238 @@
+.product-show
+  margin: 4rem auto
+  max-width: 1000px
+  position: relative
+  @media screen and (max-width: 1000px)
+    max-width: 80%
+
+  .order
+    background: white
+    z-index: 1000
+    width: 450px
+    height: auto
+    max-height: 500px
+    position: fixed
+    margin-left: 50%
+    left: -250px
+    margin-top: -150px
+    padding: 1.5rem
+
+    .cart-items-wrapper
+      height: 215px
+      overflow: scroll
+
+    h4
+      text-align: center
+      color: $dark-gray
+      font-size: 1.5rem
+      margin-top: 1.5rem
+      margin-bottom: 2rem
+
+    .button
+      width: 80px
+      display: inline-block
+      float: right
+      margin: 2rem 0 0 1rem
+      font-size: .8rem
+
+    p.subtotal, p.subtotal-number
+      text-align: right
+      margin-right: 1rem
+
+    p.subtotal
+      color: $blue
+      font-family: $sans-bold
+      font-size: 1.2rem
+      text-transform: uppercase
+
+    p.subtotal-number
+      color: $dark-gray
+      font-family: $sans-bold
+      font-size: 1.2rem
+      text-transform: uppercase  
+
+    .single-item
+      margin-bottom: 2rem
+      .item-thumbnail
+        float: left
+        img
+          width: 60px
+
+      .item-words
+        width: 300px
+        float: right
+        margin-left: 1rem
+        margin-top: .5rem
+
+        .one
+          float: left
+          width: 100px
+
+          .title
+            font-family: $sans-bold
+            font-size: .8rem
+            color: $dark-gray
+            text-transform: uppercase
+
+          .category
+            display: block
+            font-family: $serif
+            color: $dark-gray
+            font-size: .8rem
+        .two
+          float: left
+          display: inline-block
+          margin-left: 20px
+          margin-top: inherit
+          font-family: $sans-thin
+          font-size: 1rem
+          color: $dark-gray
+
+          span
+            margin-left: 7px
+
+        .three
+          float: right
+          display: inline-block
+          margin-top: inherit
+          margin-right: 2rem
+          font-family: $sans-thin
+          font-size: 1rem
+          color: $dark-gray
+
+    .js-close-modal img
+      float: right
+      width: 12px
+      cursor: pointer
+
+  .item-information
+    width: 30%
+    float: left
+    margin-right: 5%
+    @media screen and (max-width: 653px)
+      width: 100%
+
+    h1
+      font-size: 1.8rem
+      color: $dark-gray
+      text-align: left
+
+    .price
+      color: $gold
+      font-size: 1.3rem
+
+    .product-description
+      margin-top: 1rem
+      height: 200px
+      @media screen and (max-width: 653px)
+        height: auto
+
+    p
+      color: $dark-gray
+      line-height: 1.3
+      &.stocked
+        color: $gold
+
+    .label
+      color: $blue
+      font-family: $sans-bold
+      text-transform: uppercase
+      font-size: .8rem
+
+    .js-show-product-details, .js-show-product-description
+      display: inline-block
+      margin-bottom: 1rem
+      color: $light-gray
+      font-size: .8rem
+      font-family: $sans-bold
+      text-transform: uppercase
+
+
+    ul
+      li
+        font-family: $serif
+        color: $dark-gray
+        list-style-type: initial
+        margin-left: 18px
+
+  .product-details
+    margin-top: 1rem
+    height: 200px
+    display: none
+
+  .share
+    margin-top: 1rem
+    img
+      height: 15px
+      vertical-align: top
+      &:hover
+        opacity: .5
+
+
+  .button
+    display: block
+    width: 50%
+    padding: .6rem
+    border: 1px solid $gold
+    border-radius: 3px
+
+  input[type=text], input[type=number]
+    display: block
+    width: 70px
+    margin-bottom: 1rem
+
+  .item-images
+    width: 60%
+    float: left
+    @media screen and (max-width: 653px)
+      margin-top: 1rem
+      width: 100%
+
+    .large-image-wrapper
+      width: 500px
+      height: 500px
+      overflow: hidden
+      float: left
+      @media screen and (max-width: 1000px)
+        width: 100%
+        // border: 1px solid blue
+      @media screen and (max-width: 653px)
+        width: 100%
+        height: 320px
+
+      .large-image
+        width: 500px
+        cursor: zoom-in
+        float: left
+        @media screen and (max-width: 1000px)
+          width: 100%
+        @media screen and (max-width: 653px)
+          width: 300px
+          height: 300px
+          margin: 0 auto
+
+    .thumbnails
+      width: 80px
+      display: block
+      float: left
+      margin-left: 20px
+      text-align: center
+      @media screen and (max-width: 1000px)
+        width: 100%
+      @media screen and (max-width: 653px)
+        margin: 0
+        width: 320px
+
+      li
+        display: inline-block
+        width: 80px
+        height: 80px
+        margin-bottom: 5px
+        overflow: hidden
+
+        img
+          width: 80px
+          opacity: .6
+          &:hover
+            opacity: 1
+            cursor: pointer

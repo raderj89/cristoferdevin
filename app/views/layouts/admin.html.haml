@@ -1,0 +1,35 @@
+!!! 5
+%html
+  %head
+    %title
+      Cristofer Devin - Admin
+
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, initial-scale=1, maximum-scale=1" }
+    = csrf_meta_tags
+    = javascript_include_tag "//use.typekit.net/fvk2eum.js"
+    :javascript
+      try{Typekit.load();}catch(e){}
+      
+%body{ class: "#{params[:controller] + "_" + params[:action] }" }
+
+  .header
+    .logo Cristofer Devin Admin
+  .sidebar
+    .navigation
+      %ul
+        -if admin_signed_in?
+          %li= link_to "Orders", admin_orders_path
+          %li= link_to "Categories", admin_categories_path
+          %li= link_to "Products", admin_products_path
+          %li= link_to "Featured Products", admin_featured_products_path
+          %li= link_to "FAQ", admin_faqs_path
+  
+  .main
+    - flash.each do |type, msg|
+      %p.admin-flash-message
+        = msg
+
+    = yield
+

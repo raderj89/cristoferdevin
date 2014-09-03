@@ -1,0 +1,45 @@
+.splash
+
+  .hero
+    .word-box
+      %h2= @cover.header
+      %p
+        = @cover.subheader
+      = link_to 'Shop Collection', products_path(category: @cover.title), class: 'button'
+    = image_tag(@cover.image)
+  - @categories[1..3].each_with_index do |category, i|
+    - if i % 2 == 0
+      .collection.clearfix
+        .word-box
+          %h2= category.header
+          %p= category.subheader
+          = link_to "Shop #{category.title.capitalize}", products_path(category: category.title), class: 'button'
+        = image_tag(category.image)
+
+    - else
+      .collection.clearfix
+        = image_tag(category.image)
+        .word-box
+          %h2= category.header
+          %p= category.subheader
+          = link_to "Shop #{category.title.capitalize}", products_path(category: category.title), class: 'button'
+
+  = render "partials/featured", locals: { featured_products: @featured_products}
+
+  - unless @categories[4..-1].nil?
+    - @categories[4..-1].each_with_index do |category, i| 
+      - if i % 2 == 0
+        .collection.clearfix
+          .word-box
+            %h2= category.header
+            %p= category.subheader
+            = link_to "Shop #{category.title.capitalize}", products_path(category: category.title), class: 'button'
+          = image_tag(category.image)
+
+      - else
+        .collection.clearfix
+          = image_tag(category.image)
+          .word-box
+            %h2= category.header
+            %p= category.subheader
+            = link_to "Shop #{category.title.capitalize}", products_path(category: category.title), class: 'button'

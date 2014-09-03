@@ -1,0 +1,10 @@
+var partial = '<%= escape_javascript( render @products ) %>';
+var path = '<%="#{products_path page: @products.next_page }" %>';
+
+console.log(partial);
+$('.products-wrapper').append(partial);
+$('.load-more-products').attr('href', path);
+ 
+<% unless @products.next_page %>
+  $('.load-more-products-wrapper').remove();
+<% end %>

@@ -1,0 +1,24 @@
+!!! 5
+%html
+  %head
+    %title
+      Cristofer Devin
+    
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, initial-scale=1, maximum-scale=1" }
+    = csrf_meta_tags
+
+  %body{ class: "#{params[:controller] + "_" + params[:action] }" }
+    .page-wrapper
+      - flash.each do |type, msg|
+        = content_tag :div, class: "alert alert-#{type}" do
+          = msg
+          %button.close{ type: 'button' }
+            = image_tag('x.png')
+            
+
+      = render "shared/nav"
+      = yield 
+    = render "shared/footer"
+

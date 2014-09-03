@@ -1,0 +1,125 @@
+.checkout-page.clearfix
+  %h1 Order Form
+  = simple_form_for @order do |f|
+    - if @order.errors.any?
+      = render partial: 'shared/error_messages', locals: { object: @order } 
+
+    .billing-container.clearfix
+      %h4 Billing
+      = f.input :billing_first_name, placeholder: "First Name", label: false, error: false
+      = f.input :billing_last_name, placeholder: "Last Name", label: false, error: false
+      = f.input :billing_address, placeholder: "Address Line 1", label: false, error: false
+      = f.input :billing_address2, placeholder: "Address Line 2", label: false, required: false, error: false
+      = f.input :billing_city, placeholder: "City", label: false, error: false
+      = f.input :billing_state, placeholder: "State", label: false, error: false
+      = f.input :billing_zip, placeholder: "Zip", label: false, error: false
+      = f.input :billing_email, placeholder: "Email", label: false, error: false
+      = f.input :billing_phone, placeholder: "Phone Number", label: false, error: false
+
+      .shipping-radio-container
+        = check_box_tag :different_shipping
+        %span.shipping-differ My shipping information is different from my billing information
+    
+    = f.fields_for :card_info do |c|
+      .credit-container.clearfix
+        %h4 Credit Card
+        = c.input :card_first_name, placeholder: "First Name", label: false
+        = c.input :card_last_name, placeholder: "Last Name", label: false 
+        = c.input :card_number, placeholder: "Card Number", label: false
+        = c.input :cvv, placeholder: "CVC", label: false
+        = c.input :card_expiration_month, placeholder: "MM", label: false
+        = c.input :card_expiration_year, placeholder: "YYYY", label: false
+
+        .card-types-container
+          .card-image.visa
+          .card-image.mastercard
+          .card-image.discover
+          .card-image.amex
+
+    .js-shipping-container
+      %h4 Shipping
+      = f.input :shipping_first_name, placeholder: "First Name", label: false, input_html: {data: {pair: 'billing_first_name'}}, required: false, error: false
+      = f.input :shipping_last_name, placeholder: "Last Name", label: false, input_html: {data: {pair: 'billing_last_name'}}, required: false, error: false
+      = f.input :shipping_address, placeholder: "Address Line 1", label: false, input_html: {data: {pair: 'billing_address_line_1'}}, required: false, error: false
+      = f.input :shipping_address2, placeholder: "Address Line 2", label: false, input_html: {data: {pair: 'billing_address_line_2'}}, required: false, error: false
+      = f.input :shipping_city, placeholder: "City", label: false, input_html: {data: {pair: 'billing_city'}}, required: false, error: false
+      = f.input :shipping_state, placeholder: "State", label: false, input_html: {data: {pair: 'billing_state'}}, required: false, error: false
+      = f.input :shipping_zip, placeholder: "Zip", label: false, input_html: {data: {pair: 'billing_zip'}}, required: false, error: false
+      = f.input :shipping_email, placeholder: "Email", label: false, required: false
+      = f.input :shipping_phone, placeholder: "Phone Number", label: false, required: false, error: false
+
+
+    .shipping-method-container.clearfix
+      %h4 Shipping Method
+      .js-select-shipping
+        = f.radio_button :shipping_method, "ground", checked: true
+        %span 
+          Ground 
+          %span.shipping-cost
+            Free
+      .js-select-shipping
+        = f.radio_button :shipping_method, "two-day"
+        %span 
+          Two-day 
+          %span.shipping-cost
+            $15.75
+      .js-select-shipping
+        = f.radio_button :shipping_method, "overnight"
+        %span 
+          Overnight 
+          %span.shipping-cost
+            $25
+
+    .orders-show.clearfix
+      %h4 Order Summary
+
+      %table
+        %thead
+          %tr
+            %th.product-label Product
+            %th
+            %th Price
+            %th Quantity
+            %th Subtotal
+        %tbody
+          - @cart.ordered_items.each do |item|
+            %tr
+              %td.image
+                = image_tag(item.product.images.first.image_url)
+              %td.description
+                .words
+                  %h4= item.product.title
+                  %p= item.product.categories.first.title
+              %td.price
+                = number_to_currency(item.product.price, precision: (item.product.price.round == item.product.price) ? 0 : 2)
+              %td.quantity 
+                = item.quantity
+              %td.price
+                = number_to_currency(item.total_price, precision: (item.total_price.round == item.total_price) ? 0 : 2)
+      .to-checkout
+
+        .amount
+          %p.js-subtotal{data: {subtotal: @cart.total_price}}
+            = number_to_currency(@cart.total_price)
+          %p.js-shipping-cost-number
+            $0
+          %p.js-tax-cost-number{data: {tax: @cart.tax_amount}}
+            = number_to_currency(@cart.tax_amount)
+
+        .amount-type
+          %p
+            Subtotal
+          %p
+            Shipping
+          %p
+            Tax
+
+        .total
+          %p
+            Total
+            %span.js-order-total
+              = number_to_currency((@cart.total_price.to_f * 1.045).round(2))
+
+      .order-buttons
+        = link_to "Edit Order", edit_cart_carts_path, class: "button"
+        = f.submit "Place Order"

@@ -1,0 +1,8 @@
+- if product
+  .single-product-wrapper
+    .js-img-resize
+      =image_tag(product.images.first.image_url)
+      = link_to(product_path(product)) do
+        .overlay
+          %h4= product.title
+          %p= number_to_currency(product.price, precision: (product.price.round == product.price) ? 0 : 2)

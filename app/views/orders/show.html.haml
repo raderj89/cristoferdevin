@@ -1,0 +1,95 @@
+.confirmation-page-wrapper.clearfix
+  %h1
+    Thank you for your order
+  
+  .talk
+    %h2
+      Order Number:
+      %span
+        = @order.id
+    %p
+      Your order has been placed! Here is a summary of your purchase:
+  
+  .orders-show.clearfix
+    %table
+      %thead
+        %tr
+          %th.product-label Product
+          %th
+          %th Price
+          %th Quantity
+          %th Subtotal
+      %tbody
+        - @order.ordered_items.each do |item|
+          %tr
+            %td.image
+              = image_tag(item.product.images.first.image_url)
+            %td.description
+              .words
+                %h4= item.product.title
+                %p= item.product.categories.first.title
+            %td.price
+              = number_to_currency(item.product.price, precision: (item.product.price.round == item.product.price) ? 0 : 2)
+            %td.quantity 
+              = item.quantity
+            %td.price
+              = number_to_currency(item.total_price, precision: (item.total_price.round == item.total_price) ? 0 : 2)
+    .to-checkout.clearfix
+
+      .amount
+        %p.js-subtotal{data: {subtotal: @order.total_price}}
+          = number_to_currency(@order.total_price)
+        %p.js-shipping-cost-number
+          = shipping_cost(@order.shipping_method)
+        %p.js-tax-cost-number{data: {tax: @order.tax_amount}}
+          = number_to_currency(@order.tax_amount)
+
+      .amount-type
+        %p
+          Subtotal
+        %p
+          Shipping
+        %p
+          Tax
+
+      .total
+        %p
+          Total
+          %span.js-order-total
+            = number_to_currency(@order.taxed_plus_shipping_total)
+
+  .user-information.clearfix
+    %section
+      %h3
+        Shipping Address
+      %p
+        = "#{@order.shipping_first_name} #{@order.shipping_last_name}"
+      %p
+        = @order.shipping_address
+      - if @order.shipping_address2
+        %p
+          = @order.shipping_address2
+      %p
+        = "#{@order.shipping_city}, #{@order.shipping_state} #{@order.shipping_zip}"
+    %section
+      %h3
+        Billing Address
+      %p
+        = "#{@order.billing_first_name} #{@order.billing_last_name}"
+      %p
+        = @order.billing_address
+        - if @order.billing_address2
+          %p
+            = @order.billing_address2
+        %p
+          = "#{@order.billing_city}, #{@order.billing_state} #{@order.billing_zip}"
+  .talk
+    %p
+      You will receive an email confirmation shortly at
+      %span
+        = @order.shipping_email
+
+    %p
+      Keep this page for your records.
+
+    = link_to 'Keep Shopping', products_path, class: 'button'

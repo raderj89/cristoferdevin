@@ -1,0 +1,109 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{content: "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %title Thank you for your order
+  %body{style: "font-family: Helvetica;"}
+    
+    %table{align: "center", border: "0", cellpadding: "0", cellspacing: "0", width: "100%"}
+      %tr
+        %td
+          %h1{align: "center", style: "text-transform: uppercase; color: #484949;"} Thank you for your order
+      
+      %table{align: "center", cellpadding: "0", cellspacing: "0", style: "margin-top: 20px;", width: "450"}
+        %tr
+          %td{style: "padding-right: 25px;", width: "500"}
+            %h3{style: "color: #D6993B; font-family: Helvetica, ‘Helvetica Neue’, Arial"}
+              ORDER NUMBER:
+              %span{style: "color: #484949;"}
+                = @confirmation.id
+            %p{style: "font-family: Georgia, ‘Lucida Grande’, ‘Lucida Sans’;"} Your order has been placed!  Thank you for your order with Cristofer Devin. You will receive an email once your order has shipped.
+      
+      %hr{style: "margin-top: 64px;", width: "450"}
+      
+      %table{style: "margin: 0px auto 24px", width: "450"}
+        %thead
+          %tr
+            %th.product-label{style: "font-family: Helvetica, ‘Helvetica Neue’, Arial; text-transform: uppercase; color: #BBCAD1; font-size: 14px; text-align: left;"} Product
+            %th
+            %th{style: "font-family: Helvetica, ‘Helvetica Neue’, Arial; text-transform: uppercase; color: #BBCAD1; font-size: 14px; text-align: left;"} Price
+            %th{style: "font-family: Helvetica, ‘Helvetica Neue’, Arial; text-transform: uppercase; color: #BBCAD1; font-size: 14px; text-align: left;"} Quantity
+            %th{style: "font-family: Helvetica, ‘Helvetica Neue’, Arial; text-transform: uppercase; color: #BBCAD1; font-size: 14px; text-align: left;"} Subtotal
+        
+        %tbody
+          - @confirmation.ordered_items.each do |item|
+            %tr
+              %td
+                %div
+                  %h4{style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial; text-transform: uppercase"}
+                    = item.product.title
+                  %p{style: "color: #484949; margin-top: -20px; font-family: Georgia, ‘Lucida Grande’, ‘Lucida Sans’;"}
+                    = item.product.categories.first.title
+              %td{style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial"}
+                = number_to_currency(item.product.price, precision: (item.product.price.round == item.product.price) ? 0 : 2)
+              %td{style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial"}
+                = item.quantity
+              %td{style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial"}
+                = number_to_currency(item.total_price, precision: (item.total_price.round == item.total_price) ? 0 : 2)
+      
+      %hr{style: "background: #0000ff;", width: "450"}
+      
+      %table{style: "margin: 0 auto;", width: "450"}
+        %tr          
+          %td{width: "225", style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial; font-size: 11px; text-transform: uppercase; font-weight: bold;"}
+            Subtotal
+          %td{width: "225", style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial; font-size: 11px; text-transform: uppercase; font-weight: bold;"}
+            = number_to_currency(@confirmation.total_price)
+        
+        %tr         
+          %td{width: "225", style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial; font-size: 11px; text-transform: uppercase; font-weight: bold;"}
+            Shipping
+          %td{width: "225", style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial; font-size: 11px; text-transform: uppercase; font-weight: bold;"}
+            $15
+        
+        %tr          
+          %td{width: "225", style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial; font-size: 11px; text-transform: uppercase; font-weight: bold;"}
+            Tax
+          %td{width: "225", style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial; font-size: 11px; text-transform: uppercase; font-weight: bold;"}
+            = number_to_currency(@confirmation.tax_amount)
+        
+        %tr          
+          %td{width: "225", style: "color: #BBCAD1; font-family: Helvetica, ‘Helvetica Neue’, Arial; font-size: 18px; text-transform: uppercase; font-weight: bold;"}
+            Total
+          %td{width: "225", style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial; font-size: 18px; text-transform: uppercase; font-weight: bold;"}
+            = number_to_currency((@confirmation.total_price.to_f * 1.045))
+      
+      %table{style: "margin: 0 auto", width: "450"}
+        %tbody
+          %tr
+            %td{width: "225"}
+              %h4{style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial; text-transform: uppercase; font-size: 11px;"}
+                Shipping Address
+              %p{style: "color: #484949; margin-top: -10px; font-family: Georgia, ‘Lucida Grande’, ‘Lucida Sans’; font-size: 11px; "}
+                = "#{@confirmation.shipping_first_name} #{@confirmation.shipping_last_name}"
+              %p{style: "color: #484949; margin-top: -10px; font-family: Georgia, ‘Lucida Grande’, ‘Lucida Sans’; font-size: 11px; "}
+                = @confirmation.shipping_address
+              - if @confirmation.shipping_address2
+                %p{style: "color: #484949; margin-top: -10px; font-family: Georgia, ‘Lucida Grande’, ‘Lucida Sans’; font-size: 11px; "}
+                  = @confirmation.shipping_address2
+              %p{style: "color: #484949; margin-top: -10px; font-family: Georgia, ‘Lucida Grande’, ‘Lucida Sans’; font-size: 11px; "}
+                = "#{@confirmation.shipping_city}, #{@confirmation.shipping_state} #{@confirmation.shipping_zip}"
+            
+            %td{width: "225"}
+              %h4{style: "color: #484949; font-family: Helvetica, ‘Helvetica Neue’, Arial; text-transform: uppercase; font-size: 11px;"}
+                Billing Address
+              %p{style: "color: #484949; margin-top: -10px; font-family: Georgia, ‘Lucida Grande’, ‘Lucida Sans’; font-size: 11px; "}
+                = "#{@confirmation.billing_first_name} #{@confirmation.billing_last_name}"
+              %p{style: "color: #484949; margin-top: -10px; font-family: Georgia, ‘Lucida Grande’, ‘Lucida Sans’; font-size: 11px; "}
+                = @confirmation.billing_address
+              - if @confirmation.billing_address2
+                %p{style: "color: #484949; margin-top: -10px; font-family: Georgia, ‘Lucida Grande’, ‘Lucida Sans’; font-size: 11px; "}
+                  = @confirmation.billing_address2
+              %p{style: "color: #484949; margin-top: -10px; font-family: Georgia, ‘Lucida Grande’, ‘Lucida Sans’; font-size: 11px; "}
+                = "#{@confirmation.billing_city}, #{@confirmation.billing_state} #{@confirmation.billing_zip}"
+            
+          %tr
+            %td
+              %p{style: "color: #484949; margin-top: -10px; font-family: Georgia, ‘Lucida Grande’, ‘Lucida Sans’; font-size: 11px;"}
+                You have received this email because you made a purchase at Cristofer Devin. If you no longer wish to receive emails from us, click
+                %a{href: "http://unsubscribe.com"} here to unsubscribe.

@@ -1,0 +1,5 @@
+.form_container
+  = simple_form_for [:admin, @faq] do |f|
+    = f.input :question
+    = f.input :answer
+    = f.submit

@@ -1,0 +1,10 @@
+.form_container
+  %span.radio= "#{params[:action].capitalize} Category"
+  = simple_form_for [:admin, @category] do |f|
+    = f.input :title, required: false
+    = f.input :header, required: false
+    = f.input :subheader, as: :text, required: false
+    .file_upload_container
+      .upload_button
+        = f.input :image, as: :file, required: false
+    = f.submit

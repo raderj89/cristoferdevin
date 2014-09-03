@@ -1,0 +1,21 @@
+.form_container
+  = simple_form_for [:admin, @product] do |f|
+    = f.input :title, required: false
+    = f.input :description, required: false
+    = f.input :price, required: false
+    = f.input :gem_type, required: false
+    = f.input :length, required: false
+    = f.input :karat, required: false
+    = f.fields_for @categories_product do |category|
+      = category.input :category, collection: @categories, input_html: { multiple: true }
+    .file_upload_container
+      .upload_button
+        =f.input :upload_image, as: :file, placeholder: "Upload Image", required: false
+    Product Images
+    = f.fields_for :images do |builder|
+      %fieldset
+        = builder.input :image_url, as: :file, required: false
+        = builder.object.image_url
+        = image_tag(builder.object.image_url)
+        = link_to 'X', admin_image_path(builder.object), method: :delete, data: { confirm: 'Are you sure?' }
+    = f.submit

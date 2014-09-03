@@ -1,0 +1,27 @@
+.order
+  %span.js-close-modal
+    = image_tag('x.png')
+  %h4 Your Shopping Bag
+  .cart-items-wrapper.clearfix
+    - @cart.ordered_items.each do |item|
+      .single-item.clearfix
+        .item-thumbnail
+          = image_tag item.product.images.first.image_url
+        .item-words.clearfix
+          .one
+            %span.title= item.product.title
+            %span.category= item.product.categories.first.title
+          .two
+            x
+            %span
+              = item.quantity
+          .three
+            = number_to_currency(item.total_price, precision: (item.total_price.round == item.total_price) ? 0 : 2)
+
+  %p.subtotal
+    Subtotal
+  %p.subtotal-number
+    = number_to_currency(order.total_price)
+
+  = link_to "Check Out", check_out_orders_path, class: "button"
+  = link_to "Edit Bag", edit_cart_carts_path, class: "button"

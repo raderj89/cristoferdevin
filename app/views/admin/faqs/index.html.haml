@@ -1,0 +1,9 @@
+.text-page
+  = link_to "Create FAQ", new_admin_faq_path
+  - @faqs.each do |faq|
+    %h2
+      = faq.question
+    %p
+      = faq.answer
+    = link_to "Edit", edit_admin_faq_path(faq)
+    = link_to "X", admin_faq_path(faq), method: :delete, data: { confirm: 'Are you sure?' }

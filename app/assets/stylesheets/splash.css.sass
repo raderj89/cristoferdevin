@@ -1,0 +1,154 @@
+.splash
+  margin-bottom: 4rem
+
+  .word-box
+    padding: 0 3rem
+    width: 50%
+    text-align: center
+    @media screen and (max-width: 560px)
+      padding: 0
+
+  h2
+    color: $gold
+    font-size: 3rem
+    text-align: center
+    margin-top: 25%
+    @media screen and (max-width: 1024px)
+      font-size: 2rem
+    @media screen and (max-width: 700px)
+      margin-top: 1rem
+
+  p
+    margin-top: 1rem
+    font-size: 1.5rem
+    color: $dark-gray
+    line-height: 1.3
+    font-family: $serif
+    @media screen and (max-width: 839px)
+      font-size: 1rem
+
+  .button
+    margin-top: 1.5rem
+    display: inline-block 
+    @media screen and (max-width: 700px)
+      margin-top: .5rem
+      font-size: .8rem
+      padding: .5rem
+
+  .hero
+    margin-top: 1rem
+    display: block
+    position: relative
+    width: 100%
+    max-height: 550px
+    overflow: hidden
+
+    .word-box
+      background: rgba(255, 255, 255, .5)
+      position: absolute
+      right: 0
+      top: 0
+      bottom: 0
+      @media screen and (max-width: 500px)
+        width: 100%
+
+
+  img
+    width: 100%
+    overflow: hidden
+
+  .collection
+    margin: 4rem 4rem 0
+
+    .word-box
+      float: left
+      @media screen and (max-width: 860px)
+        width: 100%
+        margin-bottom: 1rem
+
+      h2
+        @media screen and (max-width: 1100px)
+          margin-top: 5%
+          font-size: 2rem
+        @media screen and (max-width: 970px)
+          margin-top: 0
+
+
+    img
+      width: 50%
+      float: left
+      @media screen and (max-width: 860px)
+        width: 100%
+        margin-bottom: 1rem
+
+  .featured-products
+    margin: 4rem 0 1rem
+    background: rgba(218, 216, 217, .5)
+    padding: 4rem
+
+    h1
+      color: $gold
+      font-size: 3rem
+      text-align: center
+      margin-bottom: 4rem
+
+    .product-wrapper
+      margin: 0 auto
+      width: 100%
+      .product
+        width: 23%
+        float: left
+        margin: 0 1%
+        text-align: center
+        @media screen and (max-width: 736px)
+          width: 100%
+          margin: 1rem auto
+          clear: both
+
+        .image-wrapper
+          width: 300px
+          height: 300px
+          overflow: hidden
+          @media screen and (max-width: 1349px)
+            width: 250px
+            height: 250px
+          @media screen and (max-width: 1142px)
+            width: 200px
+            height: 200px
+          @media screen and (max-width: 939px)
+            width: 150px
+            height: 150px
+          @media screen and (max-width: 736px)
+            width: 300px
+            height: 300px
+            clear: both
+            margin: 0 auto
+
+          img
+            width: 100%
+            height: 100%
+
+        h6
+          font-family: $sans-bold
+          text-transform: uppercase
+          text-align: center
+          font-size: 1.5rem
+          color: $dark-gray
+          margin-top: .5rem
+
+        p
+          font-size: 1rem
+          text-align: center
+          font-family: $serif
+
+        .shop-now
+          display: inline-block
+          margin-top: 1rem
+          font-family: $sans-bold
+          text-transform: uppercase
+          color: $blue
+          font-size: .8rem
+          &:hover
+            color: $light-gray
+
+          

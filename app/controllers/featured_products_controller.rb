@@ -1,0 +1,3 @@
+class FeaturedProductsController < ApplicationController
+  inherit_resources
+end

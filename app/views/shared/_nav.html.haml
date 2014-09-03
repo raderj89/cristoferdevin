@@ -1,0 +1,30 @@
+%nav
+  - if @cart
+    = link_to edit_cart_carts_path, class: 'shopping-link' do
+      = image_tag('purse.png')
+      Shopping Bag (
+      - if @cart.ordered_items.any?
+        %span= @cart.number_items
+      - else 
+        %span 0
+      )
+
+  = link_to root_path do
+    = image_tag 'logo2.png', class: 'logo'
+
+  %ul
+    %li 
+      = link_to 'Autumn Collection', products_path(category: "autumn")
+    %li 
+      = link_to 'Necklaces', products_path(category: "necklaces")
+    %li 
+      = link_to 'Earrings', products_path(category: "earrings")
+    %li 
+      = link_to 'Rings', products_path(category: "rings")
+    %li 
+      = link_to 'Bracelets', products_path(category: "bracelets")
+    %li 
+      = link_to 'All products', products_path
+    %li 
+      = link_to 'Sale', products_path(category: "sale")
+

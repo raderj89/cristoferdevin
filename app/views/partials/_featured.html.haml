@@ -1,0 +1,13 @@
+.featured-products
+  %h1 Featured Products
+  .product-wrapper.clearfix
+    - if @featured_products
+      - @featured_products.sample(4).each do |featured_product|
+        - unless featured_product.nil?
+          .product
+            .image-wrapper
+              = image_tag(featured_product.product.images.first.image_url)
+            %h6= featured_product.title
+            %p
+              = featured_product.description
+            = link_to 'Shop Now',  product_path(featured_product.product), class: 'shop-now'

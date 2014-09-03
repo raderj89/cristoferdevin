@@ -1,0 +1,21 @@
+.product-index
+  .hero
+    - if @category
+      .word-box
+        %h2= @featured_product.title
+        %p
+          = @featured_product.description
+        = link_to 'View Item', product_path(@featured_product.product), class: 'button'
+
+      = image_tag('placeholder/cover2.jpg')
+
+  - if @category
+    %h1= @category.title
+  - if @products.any?
+    .products-wrapper
+      = render @products
+    .load-more-products-wrapper
+      = link_to 'Load More Products', params.merge(page: @products.next_page), class: 'load-more-products', remote: true if @products.next_page
+  - else
+    %p
+      No products!

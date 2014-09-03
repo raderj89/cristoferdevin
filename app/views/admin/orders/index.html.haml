@@ -1,0 +1,39 @@
+.admin-list-index
+  %h2.page-title Orders Index
+
+  %table
+    Orders
+    %thead
+      %tr
+        %th Order ID
+        %th Time
+        %th Order Status
+        %th Total
+        %th Shipping Method
+        %th Email
+        %th Shipped?
+        %th Received?
+        %th Canceled?
+    %tbody
+      - @orders.each do |order|
+        %tr
+          %td
+            = link_to order.id, admin_order_path(order)
+          %td
+            = order.updated_at
+          %td 
+            = order.order_status
+          %td
+            = order.total
+          %td
+            = order.shipping_method
+          %td
+            = order.billing_email
+          %td
+            = order.order_status == "shipped" ? check_box_tag( order.id, value = order.id, checked = true, disabled: true, class: "shipped") : check_box_tag( order.id, value = order.id, checked = false, class: "shipped")
+          %td
+            = order.order_status == "received" ? check_box_tag( order.id, value = order.id, checked = true, disabled: true, class: "received") : check_box_tag( order.id, value = order.id, checked = false, class: "received")
+          %td
+            = order.order_status == "canceled" ? check_box_tag( order.id, value = order.id, checked = true, disabled: true, class: "cancel") : check_box_tag( order.id, value = order.id, checked = false, class: "cancel")
+
+

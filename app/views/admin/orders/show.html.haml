@@ -1,0 +1,81 @@
+.admin-list-index
+  %h2.page-title= "Order #{@order.id}"
+  %table
+    %h3
+      Shipping Details  
+    %thead 
+      %tr
+        %th First Name
+        %th Last Name
+        %th Address 1
+        %th Address 2
+        %th City
+        %th State
+        %th Zip
+        %th Phone
+        %th Email
+    %tbody
+      %tr
+        %td= @order.shipping_first_name
+        %td= @order.shipping_last_name
+        %td= @order.shipping_address
+        %td= @order.shipping_address2
+        %td= @order.shipping_city
+        %td= @order.shipping_state
+        %td= @order.shipping_zip
+        %td= @order.shipping_phone
+        %td= @order.shipping_email
+  %table
+    %h3 Billing Details
+    %thead
+      %tr
+        %th First Name
+        %th Last Name
+        %th Address 1
+        %th Address 2
+        %th City
+        %th State
+        %th Zip
+        %th Phone
+        %th Email
+    %tbody
+      %tr
+        %td= @order.billing_first_name
+        %td= @order.billing_last_name
+        %td= @order.billing_address
+        %td= @order.billing_address2
+        %td= @order.billing_city
+        %td= @order.billing_state
+        %td= @order.billing_zip
+        %td= @order.billing_phone
+        %td= @order.billing_email
+
+  %table
+    %h3 Order Details
+    %thead
+      %tr
+        %th Time
+        %th Order Status
+        %th Total
+    %tbody
+      %td
+        = @order.updated_at
+      %td 
+        = @order.order_status
+      %td
+        = @order.total
+  %table
+    %h3 Ordered Items
+    %thead
+      %tr
+        %th ID
+        %th Quantity
+        %th Title
+        %th Unit Price
+    %tbody
+      - @order.ordered_items.each do |item|
+        %tr
+          %td= link_to item.id, admin_product_path(item.product_id)
+          %td= item.quantity
+          %td= item.product.title
+          %td= number_to_currency(item.unit_price_at_order)

@@ -1,0 +1,86 @@
+.orders-show
+  max-width: 900px
+  margin: 4rem auto 0
+
+  .orders-show-table
+    padding: 0 2rem
+    
+  h1
+    font-size: 1.5rem
+    color: $dark-gray
+    text-align: center
+
+  table
+    margin-top: 3rem
+    width: 100%
+    padding: 0 2rem
+    th
+      text-align: center
+      padding-bottom: .5rem
+      border-bottom: 1px solid $blue
+      
+      font-family: $sans-bold
+      text-transform: uppercase
+      color: $blue
+      font-size: .8rem
+      @media screen and (max-width: 653px)
+        font-size: .5rem
+
+    tr
+      width: 100%
+    td
+      vertical-align: middle
+      text-align: center
+      border-bottom: 1px solid $lighter-gray
+      padding: 1rem 0
+      &.image
+        width: 80px
+
+        img
+          width: 100%
+
+      &.description
+        text-align: left
+        vertical-align: top
+        color: $dark-gray
+        p
+          font-size: .8rem
+        
+        .words
+          margin: .8rem 0 0 .8rem
+
+      &.price, &.quantity, &.price
+        font-family: $sans-thin
+        color: black
+
+      input[type=number]
+        width: 40px
+
+      &.remove
+        img
+          width: 12px
+          cursor: pointer
+
+  .to-checkout
+    text-align: right
+    border-top: 1px solid $blue
+    padding-top: 1rem
+    margin-bottom: 7rem
+    .subtotal
+      text-transform: uppercase
+      color: $blue
+      font-size: 1.5rem
+      p
+        font-family: $sans-bold
+        span
+          margin-left: 1.5rem
+          color: $dark-gray
+
+    .button
+      background: $gold
+      color: white
+      font-family: $sans-bold
+      margin-top: 1rem
+      padding: .6rem 2rem
+      border-radius: 3px
+      font-size: .8rem

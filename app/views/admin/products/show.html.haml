@@ -1,0 +1,28 @@
+.admin-list-index
+  %h2.page-title Product Page
+  = link_to "Edit Product", edit_admin_product_path(@product), class: 'button'
+  %table
+    %thead
+      %tr
+        %th ID
+        %th Title
+        %th Description
+        %th Price
+        %th Gem Type
+        %th Length (in cm)
+        %th Karat
+        %th In Stock?
+    %tbody
+      %tr
+        %td= @product.id
+        %td= @product.title
+        %td= @product.description
+        %td= number_to_currency(@product.price)
+        %td= @product.gem_type
+        %td= @product.length
+        %td= @product.karat
+        %td= @product.in_stock
+  .product_images
+    %h3 Product Images
+    - @product.images.each do |image|
+      = image_tag(image.image_url)

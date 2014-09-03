@@ -1,0 +1,7 @@
+.form-error-wrapper
+  %p
+    Please fix the following errors:
+  %ul
+    - object.errors.full_messages.each do |msg|
+      %li
+        = msg

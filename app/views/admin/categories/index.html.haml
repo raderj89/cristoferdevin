@@ -1,0 +1,24 @@
+.admin-list-index
+  %span.page-title Categories Index
+  %p
+  = link_to "Create a New Category", new_admin_category_path, class: 'button'
+  - if !@categories.empty?
+    %ul#categories{ data: { update_url: "#{sort_admin_categories_path}" } }
+      - @categories.each do |category|
+        = content_tag_for :li, category do 
+          %h1.category-title
+            Title:
+            = category.title.capitalize
+          %h2.category-header
+            Header: 
+            = category.header
+          %p.category-subheader
+            Subheader: 
+            = category.subheader
+          = link_to "Edit", edit_admin_category_path(category.id), class: 'button'          
+          = link_to 'X', admin_category_path(category.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button'
+          = link_to "View all #{category.title.capitalize}", admin_products_path(category: category.title), class: 'button'
+          %br/
+          %br/
+  - else
+    There are no categories

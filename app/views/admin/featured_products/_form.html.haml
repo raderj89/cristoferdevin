@@ -1,0 +1,5 @@
+.form_container
+  = simple_form_for [:admin, @featured_product] do |f|
+    = f.input :title, required: false
+    = f.input :description, required: false
+    = f.submit

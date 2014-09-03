@@ -1,0 +1,38 @@
+.product-show.clearfix
+  .item-information
+    %h1= @product.title
+    %p.price= number_to_currency(@product.price, precision: (@product.price.round == @product.price) ? 0 : 2)
+    .product-description
+      = link_to "View Product Details", '#', class: "js-show-product-details"
+      %p
+        = @product.description
+
+    .product-details
+      = link_to "View Product Description", '#', class: "js-show-product-description"
+      %ul
+        %li= @product.gem_type
+        %li= "#{@product.length} mm"
+        %li= "#{@product.karat} karat"
+
+      %p.stocked
+        = @product.in_stock ? "In stock" : "Out of stock"
+
+    = simple_form_for @ordered_item do |f|
+      = f.input :product_id, as: :hidden, input_html: { value: @product.id }
+      %p
+        = f.input :quantity, input_html: { min: '1', step: 'any'}, label_html: { class: 'label' }
+      = f.button :submit, value: "Add to Bag"
+
+    .share
+      %span.label Share on social Media
+      = link_to image_tag('twitter.png'), "http://twitter.com/share?text=#{@product.title}&url=#{request.original_url}", target: 'blank'
+      = link_to image_tag('facebook.png'), "http://www.facebook.com/sharer.php?u=#{request.original_url}", target: 'blank'
+
+  .item-images
+    .large-image-wrapper
+      = image_tag @product.images.first.image_url,class: "large-image"
+    %ul.thumbnails.clearfix
+      - @product.images.each do |image|
+        %li
+          = image_tag(image.image_url)
+  .shopping-bag

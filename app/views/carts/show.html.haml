@@ -1,0 +1,37 @@
+.orders-show
+  %h1 Shopping Bag
+
+  %table
+    %thead
+      %tr
+        %th Product
+        %th
+        %th Price
+        %th Quantity
+        %th Subtotal
+        %th Remove
+    %tbody
+      - @cart.ordered_items.each do |item|
+        %tr
+          %td.image
+            = image_tag(item.product.images.first.image_url)
+          %td.description
+            .words
+              %h4= item.product.title
+              %p= item.product.categories.first.title
+          %td.price
+            = number_to_currency(item.product.price, precision: (item.total_price.round == item.total_price) ? 0 : 2)
+          %td.quantity{ data: { item_id: "#{item.id}"} } 
+            %input{type: "number", required: true, value: "#{item.quantity unless item.quantity.nil?}"}
+          %td.price
+            = number_to_currency(item.total_price, precision: (item.total_price.round == item.total_price) ? 0 : 2)
+          %td.remove
+            %span.js-remove_from_order{ data: { item_id: "#{item.id}"} }
+              = image_tag('x.png')
+  .to-checkout
+    .subtotal
+      %p
+        Subtotal
+        %span.number
+          = number_to_currency(@cart.total_price)
+    = link_to "Check Out", check_out_orders_path, class: "button"

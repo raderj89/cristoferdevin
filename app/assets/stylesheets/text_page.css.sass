@@ -1,0 +1,47 @@
+.text-page
+  margin: 0 auto 4rem
+  width: 600px
+  @media screen and (max-width: 600px)
+    width: 100%
+    padding: 0 1rem
+
+  h1
+    color: $dark-gray
+    font-size: 1.5rem
+    text-align: center
+    margin-top: 4rem
+    margin-bottom: 1.5rem
+
+  h2
+    color: $gold
+    text-align: center
+    margin-bottom: 1rem
+    margin-top: 2rem
+
+  p
+    font-family: $serif
+    color: $dark-gray
+    line-height: 1.3
+    margin-top: 1rem
+
+  ol, ul
+    margin: 1rem 0
+    line-height: 1.3
+
+  ol
+    list-style-type: lower-roman
+    &.alpha
+      list-style-type: lower-alpha
+
+  li
+    font-family: $serif
+    color: $dark-gray
+    margin-top: 1rem
+
+  a
+    color: $gold
+    &:hover
+      opacity: .5
+
+  .email
+    text-align: center
