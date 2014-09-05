@@ -35,7 +35,7 @@ categories.each_with_index do |category, i|
   Category.create(title: category,
                   header: product_names.delete(product_names.sample),
                   subheader: Faker::HipsterIpsum.sentence,
-                  image: File.new("#{Rails.root}/app/assets/images/placeholder/#{category_images[i]}"))
+                  image: File.open("#{Rails.root}/app/assets/images/placeholder/#{category_images[i]}"))
 end
 
 product_images =  ["stone_ring.jpg",
@@ -57,7 +57,7 @@ Category.all.each do |category|
       karat: rand(10)
       )
     4.times do 
-      product.images.build(image_url: File.new("#{Rails.root}/app/assets/images/larger_images/#{product_images.sample}"))
+      product.images.build(image_url: File.open("#{Rails.root}/app/assets/images/larger_images/#{product_images.sample}"))
       product.save!
     end
   end
