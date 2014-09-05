@@ -35,7 +35,7 @@ categories.each_with_index do |category, i|
   Category.create(title: category,
                   header: product_names.delete(product_names.sample),
                   subheader: Faker::HipsterIpsum.sentence,
-                  image: "placeholder/#{category_images[i]}")
+                  image: File.new("#{Rails.root}/app/assets/images/placeholder/#{category_images[i]}"))
 end
 
 product_images =  ["stone_ring.jpg",

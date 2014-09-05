@@ -8,6 +8,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jbuilder', '~> 2.0'
+gem 'sprockets-rails', '2.1.3'
 
 gem 'haml'
 gem 'haml-rails'
@@ -19,6 +20,7 @@ gem 'bcrypt'
 gem 'acts_as_list'
 gem 'mailjet'
 gem 'paperclip'
+gem 'aws-sdk'
 
 gem 'friendly_id'
 
